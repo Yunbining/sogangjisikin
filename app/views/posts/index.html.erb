@@ -14,9 +14,26 @@
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body style="height: 150vh;  bg-faded">
-    <a href="/" class="header d-flex justify-content-start align-items-end pl-3">
+    <div class="header justify-content-start align-items-end pl-3">
+      <div class="admin">
+        <a href='/users/sign_up'>회원가입</a>
+        <% if user_signed_in? %>
+          <a href="/mypage" class="my_page">
+            My page
+          </a>
+        <%end%>
+        <%=link_to '로그인', user_session_path%>
+        <%=link_to(destroy_user_session_path, :method => :delete) do %>
+        로그아웃
+        <%end%>
+      </div>
+      
+      <a href="/" class="title d-flex ">
         SOGANG  WISEMAN
     </a>
+    </div>
+    
+  
   <nav class = "search navbar navbar-light justify-content-center align-items-center mb-3">
     <%= form_tag(posts_show_path, :method => "get", id: "search-form", :class=> "form-inline") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search 과목", :class=>"form-control mr-sm-2"  %>
@@ -65,15 +82,6 @@
     
 </div>
 
-
-  <div class = 'register'>
-    <a href='/users/sign_up'>로그인페이지 </a>
-  </div>
-  
-  <div class = 'login'>
-    <%=link_to '로그인', new_user_session_path%>
-  </div>
-  
     
 </div>
   

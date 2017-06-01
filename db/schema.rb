@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20170601102828) do
     t.integer  "subgroup_id"
     t.integer  "user_id"
     t.integer  "selected"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "image_url",   default: ""
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "replies", force: :cascade do |t|

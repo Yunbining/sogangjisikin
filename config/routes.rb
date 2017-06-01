@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get '/comments/:reply_id/recomments/:rereply_id/reedit' => 'posts#reedit', as: 're_edit'
   post '/comments/:reply_id/recomments/:rereply_id/reupload' => 'posts#reupload', as: 're_upload'
   
+  #마이 페이지
+  get '/mypage' => 'mypage#mypage_index'
+  
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

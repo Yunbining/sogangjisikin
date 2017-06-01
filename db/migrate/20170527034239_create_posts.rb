@@ -7,7 +7,8 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :subgroup_id
       t.integer :user_id
       t.integer :selected
-
+      t.string :image_url, default: ""
+      
       t.timestamps null: false
     end
   end

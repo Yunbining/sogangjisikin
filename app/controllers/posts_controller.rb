@@ -15,6 +15,7 @@ class PostsController < ApplicationController
         @post=Post.new
         @post.title=params[:post][:title]
         @post.content=params[:post][:content]
+        @post.image_url=params[:post][:image]
         @post.save
         
         redirect_to '/show'

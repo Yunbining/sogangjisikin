@@ -26,6 +26,9 @@
         <div class="post_content mb-3 col-12 col-md-8 push-0 push-sm-2">
             <h4>내용: <%=@show_post.content%></h4>
         </div>
+        
+        <%= image_tag @show_post.image_url%>
+        
         <div class="delete_update col-12 col-md-8 push-4 push-sm-5 push-md-7 push-lg-8 mb-3">
             <a href='/destroy/<%=@show_post.id%>' class="post_delete btn btn-outline-success my-2 my-sm-0">글 삭제</a>
             <a href='/edit/<%=@show_post.id%>'  class="post_update btn btn-outline-success my-2 my-sm-0">글 수정</a>
