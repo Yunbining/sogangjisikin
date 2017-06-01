@@ -1,0 +1,84 @@
+<!--글 제목, 내용, 댓글 대댓글 보여주는-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서강지식인</title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- your custom css -->
+  <!--<link rel="stylesheet" href="/app/assets/stylesheets/custom.css">-->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body style="bg-faded">
+    <a href="/" class="header d-flex justify-content-start align-items-end pl-3 mb-5">
+        SOGANG  WISEMAN
+    </a>
+    <div class="container">
+        <div class="post_title mb-3 col-12 col-md-8 push-0 push-sm-2">
+            <h2>제목: <%=@show_post.title%></h2>
+        </div>
+        <div class="post_content mb-3 col-12 col-md-8 push-0 push-sm-2">
+            <h4>내용: <%=@show_post.content%></h4>
+        </div>
+        <div class="delete_update col-12 col-md-8 push-4 push-sm-5 push-md-7 push-lg-8 mb-3">
+            <a href='/destroy/<%=@show_post.id%>' class="post_delete btn btn-outline-success my-2 my-sm-0">글 삭제</a>
+            <a href='/edit/<%=@show_post.id%>'  class="post_update btn btn-outline-success my-2 my-sm-0">글 수정</a>
+        </div>
+        
+        <div class="comments col-12 col-md-8 push-0 push-sm-2 mb-3">
+          댓글<br>
+        <!-- 댓글 보여주는 창-->
+        <%@show_post.replies.each do |onereply|%>
+        
+            <span class="comment d-block"><%= onereply.content %>
+            <a href='/posts/<%=@show_post.id%>/comments/<%=onereply.id%>' class="btn_delete ml-1">x</a>
+            <a href='/posts/<%=@show_post.id%>/cmtedit/<%=onereply.id%>' class="btn_delete ml-1">edit</a>
+            </span>
+             <!--대댓글 보여주기-->
+            <%onereply.rereplies.each do |rereply|%>
+                <span class="comment d-block pl-4">
+                    ㄴ<%= rereply.content%>
+                    
+                    <a href='/comments/<%=onereply.id%>/recomments/<%=rereply.id%>' class="btn_delete ml-1">x</a>
+                    <a href='/comments/<%=onereply.id%>/recomments/<%=rereply.id%>/reedit' class="btn_delete ml-1">edit</a>
+                </span> 
+            <%end%>
+        <!--대댓글 작성-->
+            <%= form_tag(re_create_path(reply_id: onereply.id), :method => "post") do %>
+                <%= text_field_tag :content, "", placeholder:"대댓글 입력", class: "reply_tag mb-2" %>
+                <%= submit_tag "reply", :name => nil, :class => "btn_reply btn btn-outline-success my-2 my-sm-0" %>
+            <%end%>
+        <%end%>
+        
+        <br><br>
+        <!-- 댓글 작성 -->
+        <%= form_tag(cmt_create_path, :method => "post", post_id: @show_post.id) do %>
+             <%= text_field_tag :content, "", placeholder:"댓글 입력", class: "Reply_tag"%>
+             <%= submit_tag "Reply", :name => nil, :class => "btn_reply btn btn-outline-success my-2 my-sm-0" %>
+             
+        <%end%>    
+        </div>
+        
+
+        <%=link_to 'menu', posts_index_path%>
+        <footer class="col-12 col-md-8 push-2 push-sm-5 py-5">
+            <p class="copyright">&copy; 2017 Likelion Sogang</p>
+        </footer>
+    </div>
+ 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+     
+  
+     
+

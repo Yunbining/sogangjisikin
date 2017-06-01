@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서강지식인</title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- your custom css -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body style="height: 150vh;  bg-faded">
+    <a href="/" class="header d-flex justify-content-start align-items-end pl-3">
+        SOGANG  WISEMAN
+    </a>
+  <nav class = "search navbar navbar-light justify-content-center align-items-center mb-3">
+    <%= form_tag(posts_show_path, :method => "get", id: "search-form", :class=> "form-inline") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search 과목", :class=>"form-control mr-sm-2"  %>
+    <%= submit_tag "Search", :name => nil, :class=>"btn btn-outline-success my-2 my-sm-0" %>
+    <% end %>
+  </nav>
+<div class="container">
+    <ul class="menu nav justify-content-center row">
+      <li class="nav-item col-4">
+        <%= link_to 'list', posts_show_path, :class=>"nav-link" %>
+      </li>
+      <li class="nav-item col-4">
+        <a class="nav-link" href="#">과목</a>
+      </li>
+      <li class="nav-item col-4">
+        <a class="nav-link" href="#">기타</a>
+      </li>
+    </ul>
+    <div class='new_post d-flex justify-content-end my-4'>
+    <%= link_to '글쓰기', posts_new_path, :class=>"d-block write-link px-3 py-2" %>
+    </div>
+    <div class="posts d-flex mb-10">
+      <div class="recent col-12 col-md-6 mb-3 mb-md-0">
+        <h3>최신글</h3>
+        <div class="post_box">
+        <% @posts.each do |x|%>
+          <a href='/show_post/<%=x.id%>' class="post_list d-block p-1"><%=x.title%></a><br>
+        <%end%>
+        </div>
+      </div>
+      <div class="recommended col-12 col-md-6">
+         <h3>추천글</h3>
+        <div class="post_box">
+          <% @posts.each do |x|%>
+            <a href='/show_post/<%=x.id%>' class="post_list d-block p-1"><%=x.title%></a><br>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <footer class="col-12 col-md-8 push-2 push-sm-5 py-5">
+    <p class="copyright">&copy; 2017 Likelion Sogang</p>
+  </footer>
+</div>
+
+<div class = 'suggestion'>
+    
+</div>
+
+
+  <div class = 'register'>
+    <a href='/users/sign_up'>로그인페이지 </a>
+  </div>
+  
+  <div class = 'login'>
+    <%=link_to '로그인', new_user_session_path%>
+  </div>
+  
+    
+</div>
+  
+
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

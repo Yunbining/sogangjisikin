@@ -1,0 +1,33 @@
+<html>
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+      <!-- your custom css -->
+      <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <body class="bg-faded">
+        <a  href="/" class="header d-flex justify-content-start align-items-end pl-2 pl-md-5 mb-5", lang="en">
+            SOGANG  WISEMAN
+        </a>
+        <section class="container">
+            <div class="col-12 col-md-8 push-md-2">
+                <h1>새 글 쓰기</h1><br>
+                <%= form_for @post, url: posts_create_path do |f|%>
+                    제목: <%=f.text_field :title, :class => "col-12" %><br><br>
+                    내용: <br><%=f.text_area :content, :cols => 100, :rows => 20, :class => "col-12" %><br><br>
+                    <%=f.submit '작성', class:"write btn btn-outline-success my-2 my-sm-0"%>
+                <%end%><br><br>
+                
+                <%= link_to 'menu', posts_index_path%>
+            </div>
+            <footer class="col-12 col-md-8 push-2 push-sm-5 py-5">
+            <p class="copyright">&copy; 2017 Likelion Sogang</p>
+        </footer>
+        </section>
+        
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </body>
+</html>

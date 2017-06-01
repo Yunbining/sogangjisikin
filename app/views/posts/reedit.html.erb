@@ -1,0 +1,4 @@
+ <%= form_tag(re_upload_path(reply_id: @comment.id, rereply_id: @edit_recmt.id), :method => "post") do %>
+                <%= text_field_tag :content, @edit_recmt.content %>
+                <%= submit_tag "reply", :name => nil %>
+                <%end%>

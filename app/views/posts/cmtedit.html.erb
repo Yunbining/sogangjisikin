@@ -1,0 +1,7 @@
+댓글 수정 페이지<br><br>
+
+<%= form_tag(cmt_upload_path(post_id: @post.id, reply_id: @edit_cmt.id), :method => "post") do %>
+     <%= text_field_tag :content,  @edit_cmt.content %>
+     <%= submit_tag "Reply", :name => nil %>
+<%end%>
+     
