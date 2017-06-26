@@ -11,6 +11,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :subject_subname
       t.string :subject_professor
       t.string :subject_major
+
       
       t.timestamps null: false
     end

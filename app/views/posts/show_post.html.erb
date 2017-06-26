@@ -23,7 +23,7 @@
     <div class="container">
         
         <div class="post_title mb-3 col-12 col-md-8 push-0 push-sm-2">
-            <h2>제목: <%=@show_post.title%></h2>
+          <h2>제목: <%=@show_post.title%>  <%#@info.subname%></h2>
         </div>
         <div class="post_content mb-3 col-12 col-md-8 push-0 push-sm-2">
             <h4>내용: <%=@show_post.content%></h4>
@@ -31,12 +31,12 @@
         
         <%= image_tag @show_post.image_url%>
         
-        <div class="delete_update col-12 col-md-8 push-4 push-sm-5 push-md-7 push-lg-8 mb-3">
+        <div class="delete_update col-12 col-md-8 push-4 push-sm-5 push-md-6 push-lg-7 mb-3">
             <%#=form_tag(posts_like_path(post_id: post_id, user_id: user_id), :method => "post") do %>
                 <%#= submit_tag "♥ like", :name => nil %>
             <%#end%>
-            <%= link_to "♥ like", posts_like_path(post_id: @show_post.id, user_id: current_user.id) %>
-            <h1><%=@likecount 개%></h1>
+            <%= link_to "♥ like #{@likecount}", posts_like_path(post_id: @show_post.id, user_id: current_user.id), :class => "post_delete btn btn-outline-success my-2 my-sm-0" %>
+    
             <a href='/destroy/<%=@show_post.id%>' class="post_delete btn btn-outline-success my-2 my-sm-0">글 삭제</a>
             <a href='/edit/<%=@show_post.id%>'  class="post_update btn btn-outline-success my-2 my-sm-0">글 수정</a>
         </div>

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     #메인페이지    
     def index
         @posts = Post.order(created_at: :desc).limit(14)
+        @rcmposts = Post.order(likecount: :desc).limit(14)
         
     end
     
@@ -21,6 +22,9 @@ class PostsController < ApplicationController
         @post.user_id = current_user.id
         @post.title=params[:post][:title]
         @post.content=params[:post][:content]
+        @post.subject_id=params[:subject_id]
+        @post.subject_subname=params[:subject_subname]
+        @post.subject_professor=params[:subject_professor]
         @post.image_url=params[:post][:image_url]
         
         # @post.user_id = current_user.id
@@ -70,9 +74,8 @@ class PostsController < ApplicationController
 
     def show_post
         @show_post=Post.find(params[:post_id])
-        
-        @like=Like.all
-        @likecount=Like.count.where(:post_id => @like.post_id)
+        #@info=Subject.find(params[:subject_id])
+        @likecount=Like.where(post_id: params[:post_id]).count
     end
     
 
@@ -167,7 +170,11 @@ class PostsController < ApplicationController
         @like.post_id=params[:post_id]
         @like.user_id=params[:user_id]
         @like.save
-    
+        
+        @postlike = Post.find(params[:post_id])
+        @postlike.likecount += 1
+        @postlike.save
+        
         redirect_to :back
     end
 end

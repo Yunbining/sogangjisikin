@@ -1,7 +1,31 @@
-교수진<br>
+
+<html>
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+      <!-- your custom css -->
+      <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <body class="bg-faded">
+        <a  href="/" class="header d-flex justify-content-start align-items-end pl-2 pl-md-5 mb-5", lang="en">
+            SOGANG  WISEMAN
+        </a>
+        <section class="container">
+            교수진<br>
 
 <%@subject.each do |x| %>
 <%=x.professor%>
 <%end%><br><br>
 
 <%= link_to '글쓰기', posts_new_path %>
+            <footer class="footer my-5 d-flex justify-content-center">
+            <p class="copyright">&copy; 2017 Likelion Sogang</p>
+        </footer>
+        </section>
+        
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </body>
+</html>

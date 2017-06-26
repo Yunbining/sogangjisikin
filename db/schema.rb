@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626124546) do
+ActiveRecord::Schema.define(version: 20170626185848) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "post_id"
@@ -24,12 +24,16 @@ ActiveRecord::Schema.define(version: 20170626124546) do
     t.text     "title"
     t.text     "content"
     t.integer  "visit"
-    t.integer  "subgroup_id"
     t.integer  "user_id"
     t.integer  "selected"
-    t.string   "image_url",   default: ""
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "image_url",         default: ""
+    t.integer  "subject_id"
+    t.string   "subject_subname"
+    t.string   "subject_professor"
+    t.string   "subject_major"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "likecount",         default: 0
   end
 
   create_table "replies", force: :cascade do |t|

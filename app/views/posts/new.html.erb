@@ -17,7 +17,7 @@
                 <%= form_for @post, url: posts_create_path, multipart: true do |f|%>
                 
                           <!--과목,전공,교수 선택-->
-                  <%#= f.collection_select :subject_id, @subjects, :id, :subname %><br>
+                      <%#= f.collection_select :subject_id, @subjects, :id, :subname %><br>
                     <select name="post[subject_id]">
                         <% @subjects.uniq.each do |subject| %>
                             <option value="<%= subject.id %>"><%= subject.subname %>(<%= subject.professor %>)</option>
