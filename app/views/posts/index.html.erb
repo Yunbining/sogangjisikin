@@ -15,7 +15,7 @@
 </head>
 <body style="height: 150vh;  bg-faded">
     <div class="header justify-content-start align-items-end pl-3">
-      <div class="admin">
+      <div class="admin pr-3">
         <a href='/users/sign_up'>회원가입</a>
         <% if user_signed_in? %>
           <a href="/mypage" class="my_page">
@@ -24,11 +24,11 @@
         <%end%>
         <%=link_to '로그인', user_session_path%>
         <%=link_to(destroy_user_session_path, :method => :delete) do %>
-        로그아웃
+          로그아웃
         <%end%>
       </div>
       
-      <a href="/" class="title d-flex ">
+      <a href="/" class="title d-flex">
         SOGANG  WISEMAN
     </a>
     </div>

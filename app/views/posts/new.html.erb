@@ -17,13 +17,13 @@
                 <%= form_for @post, url: posts_create_path, multipart: true do |f|%>
                     제목: <%=f.text_field :title, :class => "col-12" %><br><br>
                     내용: <br><%=f.text_area :content, :cols => 100, :rows => 20, :class => "col-12" %><br><br>
-                    <%= file_field_tag "pic", accept: 'image/*'%>
+                    <%= f.file_field :image_url, accept: 'image/*'%>
                     <%=f.submit '작성', class:"write btn btn-outline-success my-2 my-sm-0"%>
                 <%end%><br><br>
                 
                 <%= link_to 'menu', posts_index_path%>
             </div>
-            <footer class="col-12 col-md-8 push-2 push-sm-5 py-5">
+            <footer class="footer my-5">
             <p class="copyright">&copy; 2017 Likelion Sogang</p>
         </footer>
         </section>

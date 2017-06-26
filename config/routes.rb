@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   
   #마이 페이지
   get '/mypage' => 'mypage#mypage_index'
-  
+  get '/test' => 'posts#test'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

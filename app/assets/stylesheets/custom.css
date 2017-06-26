@@ -19,6 +19,10 @@ html {
     font-size: 1rem;
     color: white;
 }
+.admin a:hover {
+    text-decoration: none;
+    color: #302F2F;
+}
 
 .title a {
     font-size: 2.5rem;
@@ -64,6 +68,19 @@ a.header:focus {
     text-decoration: none;
     color:#E6DADA;
 }
+.header .title {
+    color:#E6DADA;
+    margin-top: 2.6rem;
+}
+.header .title:hover {
+    text-decoration: none;
+    color:#E6DADA;
+}
+.header .title:focus {
+    text-decoration: none;
+    color:#E6DADA;
+}
+
 
 .nav-link {
     text-align: center;

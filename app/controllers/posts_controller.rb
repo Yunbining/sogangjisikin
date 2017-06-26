@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
     #메인페이지    
     def index
-        @posts = Post.order('created_at DESC')
+        @posts = Post.order(created_at: :desc)
         
     end
     
@@ -12,13 +12,17 @@ class PostsController < ApplicationController
     end
     
     def create
+      
         @post=Post.new
         @post.title=params[:post][:title]
         @post.content=params[:post][:content]
-        @post.image_url=params[:post][:image]
+        @post.image_url=params[:post][:image_url]
+        # @post.user_id = current_user.id
         @post.save
+    
         
-        redirect_to '/show'
+        redirect_to posts_showpost_path(@post)
+     
     end
     
     def destroy
@@ -47,12 +51,12 @@ class PostsController < ApplicationController
     def show
         @subgroups = Subgroup.all
         if params[:search]
-        @subgroups = Subgroup.search(params[:search]).order("created_at DESC")
+        @subgroups = Subgroup.search(params[:search]).order(created_at: :desc)
         else
          @subgroups = Subgroup.all.order('created_at DESC')
         end
     
-        @posts=Post.all
+        @posts=Post.order(created_at: :desc)
     end
     
     def show_prof
@@ -128,5 +132,10 @@ class PostsController < ApplicationController
         @edit_upload.save
         
         redirect_to posts_showpost_path(@post)
+    end
+    
+    def test
+        @s=Subject.all
+        
     end
 end
