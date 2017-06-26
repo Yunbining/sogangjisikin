@@ -14,12 +14,14 @@
   <!-- your custom css -->
   <!--<link rel="stylesheet" href="/app/assets/stylesheets/custom.css">-->
   <link rel="stylesheet" href="css/custom.css">
+  
 </head>
 <body style="bg-faded">
     <a href="/" class="header d-flex justify-content-start align-items-end pl-3 mb-5">
         SOGANG  WISEMAN
     </a>
     <div class="container">
+        
         <div class="post_title mb-3 col-12 col-md-8 push-0 push-sm-2">
             <h2>제목: <%=@show_post.title%></h2>
         </div>
@@ -30,6 +32,11 @@
         <%= image_tag @show_post.image_url%>
         
         <div class="delete_update col-12 col-md-8 push-4 push-sm-5 push-md-7 push-lg-8 mb-3">
+            <%#=form_tag(posts_like_path(post_id: post_id, user_id: user_id), :method => "post") do %>
+                <%#= submit_tag "♥ like", :name => nil %>
+            <%#end%>
+            <%= link_to "♥ like", posts_like_path(post_id: @show_post.id, user_id: current_user.id) %>
+            <h1><%=@likecount 개%></h1>
             <a href='/destroy/<%=@show_post.id%>' class="post_delete btn btn-outline-success my-2 my-sm-0">글 삭제</a>
             <a href='/edit/<%=@show_post.id%>'  class="post_update btn btn-outline-success my-2 my-sm-0">글 수정</a>
         </div>
@@ -46,7 +53,7 @@
              <!--대댓글 보여주기-->
             <%onereply.rereplies.each do |rereply|%>
                 <span class="comment d-block pl-4">
-                    ㄴ<%= rereply.content%>
+                    <%= rereply.content%>
                     
                     <a href='/comments/<%=onereply.id%>/recomments/<%=rereply.id%>' class="btn_delete ml-1">x</a>
                     <a href='/comments/<%=onereply.id%>/recomments/<%=rereply.id%>/reedit' class="btn_delete ml-1">edit</a>
@@ -70,7 +77,7 @@
         
 
         <%=link_to 'menu', posts_index_path%>
-        <footer class="footer my-5">
+        <footer class="footer my-5 d-flex justify-content-center">
             <p class="copyright">&copy; 2017 Likelion Sogang</p>
         </footer>
     </div>

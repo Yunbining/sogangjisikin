@@ -2,21 +2,27 @@ class PostsController < ApplicationController
 
     #메인페이지    
     def index
-        @posts = Post.order(created_at: :desc)
+        @posts = Post.order(created_at: :desc).limit(14)
         
     end
     
     #게시글 작성, 수정, 삭제
     def new
         @post = Post.new
+        @subjects = Subject.all
+        
+    
     end
     
     def create
       
+        @subjects = Subject.all
         @post=Post.new
+        @post.user_id = current_user.id
         @post.title=params[:post][:title]
         @post.content=params[:post][:content]
         @post.image_url=params[:post][:image_url]
+        
         # @post.user_id = current_user.id
         @post.save
     
@@ -49,11 +55,11 @@ class PostsController < ApplicationController
 
     #게시글 목록, 게시글 보기
     def show
-        @subgroups = Subgroup.all
+        @subjects = Subject.all
         if params[:search]
-        @subgroups = Subgroup.search(params[:search]).order(created_at: :desc)
+        @subjects = Subject.search(params[:search]).order(created_at: :desc)
         else
-         @subgroups = Subgroup.all.order('created_at DESC')
+         @subjects = Subject.all.order('created_at DESC')
         end
     
         @posts=Post.order(created_at: :desc)
@@ -64,8 +70,12 @@ class PostsController < ApplicationController
 
     def show_post
         @show_post=Post.find(params[:post_id])
+        
+        @like=Like.all
+        @likecount=Like.count.where(:post_id => @like.post_id)
     end
     
+
     #댓글 쓰기, 댓글 수정, 댓글 삭제 
     
     def cmtcreate
@@ -134,8 +144,30 @@ class PostsController < ApplicationController
         redirect_to posts_showpost_path(@post)
     end
     
-    def test
-        @s=Subject.all
-        
+    #학과 과목 교수 카테고리
+    def subject
+        @subjects = Subject.all
+        if params[:search]
+        @subjects = Subject.search(params[:search]).order(created_at: :desc)
+        else
+        @subjects = Subject.all.order('created_at DESC')
+        end
+    
+        @posts=Post.order(created_at: :desc)
+       
+    end
+    
+    def subject_show
+        @subject = Subject.where(subname: params[:subname])
+    end
+
+    #좋아요
+    def like
+        @like = Like.new
+        @like.post_id=params[:post_id]
+        @like.user_id=params[:user_id]
+        @like.save
+    
+        redirect_to :back
     end
 end

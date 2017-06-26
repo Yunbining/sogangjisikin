@@ -1,2 +1,44 @@
-<h1> my page page</h1>
-<%= current_user.email %> is online here
+<!--글 제목, 내용, 댓글 대댓글 보여주는-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서강지식인</title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- your custom css -->
+  <!--<link rel="stylesheet" href="/app/assets/stylesheets/custom.css">-->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body style="bg-faded">
+    <a href="/" class="header d-flex justify-content-start align-items-end pl-3 mb-5">
+        SOGANG  WISEMAN
+    </a>
+    <div class="container">
+            <h2>My Page</h2>
+            <hr>
+            <p>Name : <%= @user.name %></p>
+            <p>Email : <%= @user.email %></p>
+            <p>Classes : </p>
+            <p>내가 쓴 글 : 
+            <% @posts.each do |post| %>
+                <a href="/show_post/<%=post.id%>"><%=post.title%></a> 
+            <% end %></p>
+    </div>
+        
+
+        <footer class="footer my-5 d-flex justify-content-center">
+            <p class="copyright">&copy; 2017 Likelion Sogang</p>
+        </footer>
+    </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

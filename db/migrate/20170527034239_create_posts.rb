@@ -4,10 +4,13 @@ class CreatePosts < ActiveRecord::Migration
       t.text :title
       t.text :content
       t.integer :visit
-      t.integer :subgroup_id
       t.integer :user_id
       t.integer :selected
       t.string :image_url, default: ""
+      t.integer :subject_id
+      t.string :subject_subname
+      t.string :subject_professor
+      t.string :subject_major
       
       t.timestamps null: false
     end

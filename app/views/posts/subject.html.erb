@@ -1,0 +1,21 @@
+<nav class = "search navbar navbar-light justify-content-center align-items-center mb-3">
+    <%= form_tag(posts_subject_path, :method => "get", id: "search-form", :class=> "form-inline") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search 과목", :class=>"form-control mr-sm-2"  %>
+    <%= submit_tag "Search", :name => nil, :class=>"btn btn-outline-success my-2 my-sm-0" %>
+    <% end %>
+</nav>
+
+<%@array=[]%>
+<% @subjects.each do |x| %>
+  
+    <%@array << x.subname.to_s%>
+  
+<%end%>
+
+<%@array.uniq.each do |subject|%>
+    <form action = 'subject_show' method='post'>
+        <%=subject%>
+        <input type ='hidden' name ='subname' value ='<%=subject%>'>
+        <input type ='submit' value ='go!'><br>
+    </form>
+<%end%>

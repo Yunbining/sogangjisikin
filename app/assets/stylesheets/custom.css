@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Hanna');
 html {
   /* 1rem === 15px */
   font-size: 15px;
   line-height: 1.6;
-  font-family: 'NanumSquare', sans-serif;
+  font-family: 'Hanna', sans-serif;
 }
 
 * {
-  font-family: 'NanumSquare', sans-serif;
+  font-family: 'Hanna', sans-serif;
   letter-spacing: -0.02em;
   color: #333;
 }

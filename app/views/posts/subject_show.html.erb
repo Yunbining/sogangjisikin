@@ -1,0 +1,7 @@
+교수진<br>
+
+<%@subject.each do |x| %>
+<%=x.professor%>
+<%end%><br><br>
+
+<%= link_to '글쓰기', posts_new_path %>

@@ -30,6 +30,13 @@ Rails.application.routes.draw do
   #마이 페이지
   get '/mypage' => 'mypage#mypage_index'
   get '/test' => 'posts#test'
+  
+  #학과 과목 교수 카테고리
+  get '/subject' => 'posts#subject', as: 'posts_subject'
+  post '/subject_show' => 'posts#subject_show'
+  
+  #좋아요
+  get '/posts/:post_id/like/:user_id' => 'posts#like', as: 'posts_like'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

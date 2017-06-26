@@ -6,26 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서강지식인</title>
   <!-- fonts -->
+  <link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css">
   <!-- bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <!-- your custom css -->
   <link rel="stylesheet" href="css/custom.css">
+  
 </head>
 <body style="height: 150vh;  bg-faded">
     <div class="header justify-content-start align-items-end pl-3">
       <div class="admin pr-3">
-        <a href='/users/sign_up'>회원가입</a>
+        
         <% if user_signed_in? %>
-          <a href="/mypage" class="my_page">
+          <a href="/mypage" class="my_page mr-2">
             My page
           </a>
+            <%=link_to(destroy_user_session_path, :method => :delete) do %>
+              로그아웃
+            <%end%>
+        <% else %>
+          <%=link_to '로그인', user_session_path%>
+          <a href='/users/sign_up'>회원가입</a>
         <%end%>
-        <%=link_to '로그인', user_session_path%>
-        <%=link_to(destroy_user_session_path, :method => :delete) do %>
-          로그아웃
-        <%end%>
+        
+        
       </div>
       
       <a href="/" class="title d-flex">
@@ -36,7 +42,7 @@
   
   <nav class = "search navbar navbar-light justify-content-center align-items-center mb-3">
     <%= form_tag(posts_show_path, :method => "get", id: "search-form", :class=> "form-inline") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search 과목", :class=>"form-control mr-sm-2"  %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search 과목/교수명", :class=>"form-control mr-sm-2"  %>
     <%= submit_tag "Search", :name => nil, :class=>"btn btn-outline-success my-2 my-sm-0" %>
     <% end %>
   </nav>
@@ -46,7 +52,7 @@
         <%= link_to 'list', posts_show_path, :class=>"nav-link" %>
       </li>
       <li class="nav-item col-4">
-        <a class="nav-link" href="#">과목</a>
+        <a class="nav-link" href="/subject">과목</a>
       </li>
       <li class="nav-item col-4">
         <a class="nav-link" href="#">기타</a>

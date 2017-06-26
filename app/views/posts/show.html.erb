@@ -13,14 +13,8 @@
         </a>
         <section class="container">
             <h1>게시글 리스트</h1>
-                <!--수업이름-->
-            <%@subgroups.each do |subgroup|%>
-                <%= subgroup.title%><br>
-            <%end%>
-            <h3>-------------------------------------------------------</h3>
-            <%@subgroups.each do |subgroup|%>
-            <%= subgroup.prof_name%><br>
-            <%end%>
+           
+       
             <%= form_tag(posts_show_path, :method => "get", id: "search-form", :class=>"form-inline search mb-3") do %>
                 <%= text_field_tag :search, params[:search], placeholder: "Search 과목 / 교수명", :class=> "form-control mr-sm-2" %>
                 <%= submit_tag "Search", :name => nil, :class=>"btn btn-outline-success my-2 my-sm-0" %>
@@ -32,7 +26,7 @@
             
             <%= link_to 'menu', posts_index_path%>
             <!--글 제목, 내용, 댓글 대댓글 보여주는-->
-            <footer class="footer my-5">
+            <footer class="footer my-5 d-flex justify-content-center">
             <p class="copyright">&copy; 2017 Likelion Sogang</p>
         </footer>
         </section>
